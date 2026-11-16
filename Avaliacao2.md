@@ -27,6 +27,36 @@
 
 ---
 
+## ✏️ Guia Rápido do Editor `nano`
+
+O `nano` é o editor de texto usado nas Questões 8, 9 e 10. Ele abre dentro do próprio terminal.
+
+**Abrir (ou criar) um arquivo:**
+```bash
+nano nome_do_arquivo.txt
+```
+Se o arquivo não existir, o `nano` abre uma tela vazia e o arquivo é criado quando você salvar.
+
+**Teclas principais** (no rodapé do `nano`, o símbolo `^` significa a tecla **Ctrl**, e `M-` significa **Alt**):
+
+| Ação | Teclas | O que acontece |
+| :--- | :--- | :--- |
+| Escrever | digite normalmente | Use as **setas** do teclado para mover o cursor. Não funciona clicar com o mouse. |
+| **Salvar** | **`Ctrl + O`** e depois **`Enter`** | O `nano` mostra o nome do arquivo no rodapé; o `Enter` confirma. Aparece a mensagem `Wrote N lines`. |
+| **Sair** | **`Ctrl + X`** | Fecha o editor e volta ao terminal. |
+| Sair sem ter salvo | **`Ctrl + X`** → **`Y`** → **`Enter`** | O `nano` pergunta `Save modified buffer?`. **`Y`** (yes) salva e **`N`** (no) descarta as alterações. |
+| Cancelar uma pergunta | **`Ctrl + C`** | Volta para a edição sem salvar nem sair. |
+| Apagar a linha inteira | **`Ctrl + K`** | Recorta a linha onde está o cursor. |
+| Colar | **`Ctrl + U`** | Cola a última linha recortada. |
+
+**Resumo para não errar:** escreva → **`Ctrl + O`**, **`Enter`** (salva) → **`Ctrl + X`** (sai) → confira com **`cat nome_do_arquivo.txt`**.
+
+> ⚠️ **Se aparecer `Permission denied` ao salvar**, o usuário atual não pode gravar naquela pasta. Saia com **`Ctrl + X`** → **`N`**, confira **quem você é** (`whoami`) e **onde está salvando** (`pwd`), e tente de novo.
+>
+> 💡 **Pelo SSH no PowerShell**, você pode colar um texto copiado do Windows dentro do `nano` com o **botão direito do mouse**.
+
+---
+
 ## 🏆 Cenário da Prova: Hackathon IFAL
 
 Você é o responsável pela infraestrutura do **Hackathon IFAL**. O servidor do evento precisa ter contas para os participantes, grupos por equipe e pastas em que cada equipe só acessa o seu próprio material.
@@ -205,7 +235,7 @@ Você é o responsável pela infraestrutura do **Hackathon IFAL**. O servidor do
 
 ### 📝 QUESTÃO 8: Ficha de Inscrição de Cada Participante (`su -`)
 
-1.  Entre como cada participante usando **`su -`** e crie, na pasta pessoal dele, o arquivo **`inscricao.txt`** no formato JSON abaixo (use o `nano`):
+1.  Entre como cada participante usando **`su -`** e crie, na pasta pessoal dele, o arquivo **`inscricao.txt`** no formato JSON abaixo (use o `nano`). *(Para salvar: `Ctrl + O`, `Enter`. Para sair: `Ctrl + X`. Veja o **Guia Rápido do `nano`** no início da prova.)*
     ```bash
     su - ana
     nano ~/inscricao.txt
@@ -251,7 +281,7 @@ Usando sempre **`su -`**, execute os testes abaixo e mostre o resultado de cada 
 
 | Teste | Usuário | Ação | Resultado esperado |
 | :---: | :--- | :--- | :--- |
-| A | `ana` | `cd /srv/hackathon/web`, abrir `nano codigo/README.txt`, acrescentar a linha `Revisado por Ana`, salvar e mostrar com `cat codigo/README.txt` | Permitido |
+| A | `ana` | `cd /srv/hackathon/web`, abrir `nano codigo/README.txt`, acrescentar a linha `Revisado por Ana`, salvar (`Ctrl + O`, `Enter`), sair (`Ctrl + X`) e mostrar com `cat codigo/README.txt` | Permitido |
 | B | `ana` | `cd /srv/hackathon/mobile` | `Permission denied` |
 | C | `visitante` | `cd /srv/hackathon/web` e `cd /srv/hackathon/mobile` | `Permission denied` nas duas |
 | D | `<seunome>` | `cd /srv/hackathon/web` e `cd /srv/hackathon/mobile`, com `ls` em cada uma | Permitido nas duas |
@@ -274,7 +304,7 @@ A coordenação precisa de uma lista com todos os inscritos, que só a equipe we
     sudo cat /home/carla/inscricao.txt
     sudo cat /home/<seunome>/inscricao.txt
     ```
-2.  Com o `nano`, crie o arquivo `/srv/hackathon/web/inscritos.txt` com o conteúdo abaixo, usando os dados das fichas (uma linha por participante):
+2.  Com o `nano`, crie o arquivo `/srv/hackathon/web/inscritos.txt` com o conteúdo abaixo, usando os dados das fichas (uma linha por participante). *(Para salvar: `Ctrl + O`, `Enter`. Para sair: `Ctrl + X`. Veja o **Guia Rápido do `nano`** no início da prova.)*
     ```bash
     nano /srv/hackathon/web/inscritos.txt
     ```
