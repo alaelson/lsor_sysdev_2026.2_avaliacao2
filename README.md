@@ -19,7 +19,7 @@ A prova é **individual** e **prática**: você vai trabalhar em uma máquina vi
 
 ### Passo 2: Obter e Configurar a Máquina Virtual
 1. No laboratório, acesse o servidor de arquivos:
-   * Caminho de rede: `\\172.20.22.21\public\avaliacao2`
+   * Caminho de rede: `\\172.20.20.21\public\avaliacao2`
    * Usuário: `alunoifal` | Senha: `alunoifal`
 2. Copie o arquivo **`UbuntuAvaliacao2.ova`** para a sua pasta de trabalho: `C:\2026.2\SysDevTech\VM\<NomeDoAluno>`.
 3. Importe a VM no VirtualBox (detalhes na Questão 1).
