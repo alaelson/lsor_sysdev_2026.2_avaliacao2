@@ -251,7 +251,7 @@ Usando sempre **`su -`**, execute os testes abaixo e mostre o resultado de cada 
 
 | Teste | Usuário | Ação | Resultado esperado |
 | :---: | :--- | :--- | :--- |
-| A | `ana` | `cd /srv/hackathon/web` e `echo "Revisado por Ana" >> codigo/README.txt`, depois `cat codigo/README.txt` | Permitido |
+| A | `ana` | `cd /srv/hackathon/web`, abrir `nano codigo/README.txt`, acrescentar a linha `Revisado por Ana`, salvar e mostrar com `cat codigo/README.txt` | Permitido |
 | B | `ana` | `cd /srv/hackathon/mobile` | `Permission denied` |
 | C | `visitante` | `cd /srv/hackathon/web` e `cd /srv/hackathon/mobile` | `Permission denied` nas duas |
 | D | `<seunome>` | `cd /srv/hackathon/web` e `cd /srv/hackathon/mobile`, com `ls` em cada uma | Permitido nas duas |
@@ -263,62 +263,45 @@ Usando sempre **`su -`**, execute os testes abaixo e mostre o resultado de cada 
 
 ---
 
-### ⚙️ QUESTÃO 10: Script de Consolidação, Permissão de Execução e Filtros
+### 📋 QUESTÃO 10: Lista de Inscritos, Permissões do Arquivo e Filtros de Linhas
 
-1.  Como `administrador`, crie o script `/srv/hackathon/gerar-inscritos.sh` com o `nano`, digitando exatamente o código abaixo:
+A coordenação precisa de uma lista com todos os inscritos, que só a equipe web pode consultar.
+
+1.  Como `administrador`, mostre as fichas criadas na Questão 8. É preciso `sudo` porque as pastas pessoais dos outros usuários são protegidas:
     ```bash
-    sudo nano /srv/hackathon/gerar-inscritos.sh
+    sudo cat /home/ana/inscricao.txt
+    sudo cat /home/bruno/inscricao.txt
+    sudo cat /home/carla/inscricao.txt
+    sudo cat /home/<seunome>/inscricao.txt
     ```
+2.  Com o `nano`, crie o arquivo `/srv/hackathon/web/inscritos.txt` com o conteúdo abaixo, usando os dados das fichas (uma linha por participante):
     ```bash
-    #!/bin/bash
-
-    # Pede o nome do aluno que está executando
-    echo "=========================================="
-    read -p "Digite seu nome completo (Aluno): " nome_aluno
-    echo "=========================================="
-
-    ARQUIVO_SAIDA="/srv/hackathon/inscritos.txt"
-
-    # Cria (ou sobrescreve) o arquivo de saída com o cabeçalho
-    echo "LISTA DE INSCRITOS - HACKATHON IFAL 2026" > $ARQUIVO_SAIDA
-    echo "Gerado por (Aluno): $nome_aluno" >> $ARQUIVO_SAIDA
-    echo "Data: $(date)" >> $ARQUIVO_SAIDA
-    echo "==========================================" >> $ARQUIVO_SAIDA
-
-    # Procura a ficha de inscrição na pasta pessoal de cada usuário
-    for arquivo in /home/*/inscricao.txt; do
-        if [ -f "$arquivo" ]; then
-            echo "Lendo: $arquivo"
-            echo "--- Origem: $arquivo ---" >> $ARQUIVO_SAIDA
-            cat "$arquivo" >> $ARQUIVO_SAIDA
-            echo "------------------------------------------" >> $ARQUIVO_SAIDA
-        fi
-    done
-
-    echo "Concluído! Resultado em: $ARQUIVO_SAIDA"
+    nano /srv/hackathon/web/inscritos.txt
     ```
-2.  Mostre o script com `cat`.
-3.  Mostre as permissões do script com `ls -l` **antes** e **depois** de dar permissão de execução:
+    ```text
+    LISTA DE INSCRITOS - HACKATHON IFAL 2026
+    Gerada por: <SEU NOME COMPLETO> - Data: <data de hoje>
+    ==========================================
+    ANA - equipe-web - JavaScript
+    BRUNO - equipe-web - PHP
+    CARLA - equipe-mobile - Kotlin
+    <SEU NOME COMPLETO> - coordenacao - <sua linguagem favorita>
+    ```
+3.  Mostre o arquivo completo com `cat` e use os filtros de linhas para mostrar **só o cabeçalho** (3 primeiras linhas) e **só os 2 últimos inscritos**:
     ```bash
-    ls -l /srv/hackathon/gerar-inscritos.sh
-    sudo chmod +x /srv/hackathon/gerar-inscritos.sh
-    ls -l /srv/hackathon/gerar-inscritos.sh
+    cat /srv/hackathon/web/inscritos.txt
+    head -n 3 /srv/hackathon/web/inscritos.txt
+    tail -n 2 /srv/hackathon/web/inscritos.txt
     ```
-4.  Execute o script com `sudo` (é preciso privilégio para ler as pastas pessoais dos outros usuários) e digite o seu nome completo quando pedido:
-    ```bash
-    sudo /srv/hackathon/gerar-inscritos.sh
-    ```
-5.  Mostre o resultado completo e depois use os filtros de linhas:
-    ```bash
-    cat /srv/hackathon/inscritos.txt
-    head -n 3 /srv/hackathon/inscritos.txt
-    tail -n 5 /srv/hackathon/inscritos.txt
-    ```
+4.  Mostre as permissões do arquivo com `ls -l` **antes** e **depois** de fazer com que ele pertença ao usuário `administrador` e ao grupo `equipe-web`, com **leitura e escrita só para dono e grupo** (permissão numérica).
+5.  Teste o acesso com `su -`:
+    *   `bruno` executa `cat /srv/hackathon/web/inscritos.txt` → deve funcionar;
+    *   `carla` executa `cat /srv/hackathon/web/inscritos.txt` → deve dar `Permission denied`.
 
-> **🖼️ PRINTS:** `q10_script_cat.png`, `q10_chmod.png` (antes e depois, com o `x` aparecendo), `q10_execucao.png` (execução com o seu nome e o `cat` do resultado) e `q10_head_tail.png`.
+> **🖼️ PRINTS:** `q10_fichas.png` (os `sudo cat`), `q10_nano.png` (o arquivo aberto no `nano`), `q10_head_tail.png` (o `cat`, o `head` e o `tail`), `q10_permissoes.png` (`ls -l` antes e depois) e `q10_teste_bruno_carla.png`.
 
 *   **Sua resposta:**
-    [Comandos, prints e interpretação. Diga em uma frase o que mudou na saída do `ls -l` depois do `chmod +x`.]
+    [Comandos, prints e interpretação. Diga em uma frase por que `bruno` consegue ler a lista e `carla` não.]
 
 ---
 *Fim da Avaliação. Confira se o `Avaliacao2.md` e todos os prints da pasta `prints/` estão no seu repositório e envie o link direto deste arquivo no formulário indicado pelo professor, dentro do prazo.*
