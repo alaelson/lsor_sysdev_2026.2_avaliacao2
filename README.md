@@ -1,58 +1,63 @@
-# 📑 Repositório Template: Avaliação 1 — LSOR - BSI(2026.02)
+# 📑 Repositório Template: Avaliação 2 — LSOR - Técnico em Desenvolvimento de Sistemas (2026.02)
 
-Este repositório é o modelo oficial para a realização e entrega da **Avaliação Prático-Teórica I** da disciplina de **Laboratório de Sistemas Operacionais e Redes (LSOR)** do curso de Bacharelado em Sistemas de Informação (BSI) no IFAL - Campus Maceió.
+Este repositório é o modelo oficial para a realização e entrega da **Avaliação Prática II** da disciplina de **Laboratório de Sistemas Operacionais e Redes (LSOR)** do **Curso Técnico Integrado em Desenvolvimento de Sistemas** do IFAL - Campus Maceió.
+
+A prova é **individual** e **prática**: você vai trabalhar em uma máquina virtual no VirtualBox e registrar cada tarefa com o comando executado, o print da tela e uma frase curta explicando o resultado. O conteúdo cobrado está nos roteiros das Aulas 01 a 05 do [repositório da disciplina](https://github.com/alaelson/labredes-2026.2-sysdev).
 
 ---
 
 ## 🚀 Instruções para o Aluno (Como Realizar a Prova)
 
 ### Passo 1: Criar o seu Repositório de Resposta
-1. Certifique-se de estar logado em sua conta do GitHub.
-2. Neste repositório de template do professor, clique no botão verde **"Use this template"** (Usar este modelo) -> **"Create a new repository"** (Criar um novo repositório).
-3. Configure as propriedades do seu novo repositório pessoal:
-   * **Repository name:** `lsorbsi2026.2-<nomedoaluno>-avaliacao1`
-   * **Visibility:** Defina obrigatoriamente como **Private** (Privado) para evitar cópias e garantir a autoria individual de sua prova.
-4. Após criar, vá em **Settings** -> **Collaborators** -> **Add people** e adicione o perfil do professor (`alaelson`) como colaborador para que ele possa acessar e corrigir sua entrega.
+1. Entre na sua conta do GitHub.
+2. Neste repositório do professor, clique no botão verde **"Use this template"** → **"Create a new repository"**.
+3. Configure o seu novo repositório:
+   * **Repository name:** `lsor-2026.2-sysdev-<nomedoaluno>-avaliacao2`
+     (`<nomedoaluno>` em minúsculas, sem acentos nem espaços, com hífen se precisar. Ex.: `lsor-2026.2-sysdev-joao-silva-avaliacao2`)
+   * **Visibility:** obrigatoriamente **Private** (Privado).
+4. Depois de criar, vá em **Settings** → **Collaborators** → **Add people** e adicione o professor (`alaelson`) como colaborador. **Sem esse passo o professor não consegue corrigir a sua prova.**
 
-### Passo 2: Obter e Configurar o Ambiente de Testes (VM)
-1. No laboratório de redes, acesse o servidor de arquivos local:
-   * Caminho de rede: `\\172.20.20.21\public\avaliacao1`
-   * Credenciais de rede: Usuário: `alunoifal` | Senha: `alunoifal`
-2. Copie o arquivo **`UbuntuAvaliacao1.ova`** para o disco local `C:\2026\BSI\VM\<SeuNome>` no seu host Windows.
-3. Importe a máquina virtual para o Oracle VM VirtualBox e inicie-a.
-4. Credenciais de administração locais da VM (se necessário): Usuário: `administrador` | Senha: `adminifal`.
+### Passo 2: Obter e Configurar a Máquina Virtual
+1. No laboratório, acesse o servidor de arquivos:
+   * Caminho de rede: `\\172.20.22.21\public\avaliacao2`
+   * Usuário: `alunoifal` | Senha: `alunoifal`
+2. Copie o arquivo **`UbuntuAvaliacao2.ova`** para a sua pasta de trabalho: `C:\2026.2\SysDevTech\VM\<NomeDoAluno>`.
+3. Importe a VM no VirtualBox (detalhes na Questão 1).
+4. Credenciais da VM: Usuário: `administrador` | Senha: `adminifal`.
 
-### Passo 3: Preencher a Avaliação
-1. No seu repositório pessoal recém-criado, renomeie o arquivo `template-prova-1-v2.md` para **`Avaliacao1.md`**.
-2. Edite esse arquivo diretamente no GitHub (pelo próprio editor web) ou clone o repositório em sua máquina física do laboratório para trabalhar localmente.
-3. Conforme realiza cada uma das tarefas propostas na VM, capture as imagens de tela (prints) exigidas.
-4. Salve as imagens de captura em uma pasta chamada `prints/` dentro do seu repositório e faça a referência delas no Markdown de resposta (ex: `![Questão 1](prints/q1.png)`).
-5. Responda detalhadamente a cada uma das perguntas teóricas associadas às ações práticas.
+### Passo 3: Responder a Avaliação
+1. No seu repositório, abra o arquivo **`Avaliacao2.md`**. É nele que você responde.
+2. Edite pelo próprio site do GitHub (botão de lápis) ou clone o repositório na máquina do laboratório.
+3. Para **cada questão**, registre:
+   * o **bloco de código** com os comandos exatamente como você digitou;
+   * o **print** da tela mostrando o comando e a saída (o prompt, por exemplo `administrador@...` ou `ana@...`, deve aparecer);
+   * **uma ou duas frases** dizendo o que a saída mostra e se era o esperado.
+4. Salve os prints na pasta **`prints/`**, com nomes `qN_descricao.png` (minúsculas, sem espaços nem acentos), e referencie com caminho relativo: `![Questão 4](prints/q4_usuarios.png)`.
+
+> 💡 **Dica:** a partir da Questão 3 você pode fazer a prova pelo **SSH** no PowerShell. Fica mais fácil copiar comandos e saídas para o Markdown.
 
 ### Passo 4: Envio Oficial
-1. Quando concluir todas as 10 questões, certifique-se de que todos os arquivos (`Avaliacao1.md` e as imagens de prints de tela na pasta `prints/`) estejam devidamente commitados e atualizados no seu repositório privado do GitHub.
-2. Acesse o link do formulário do **Google Forms** fornecido pelo professor em sala.
-3. Preencha seus dados de identificação e cole o **link direto do arquivo `Avaliacao1.md`** do seu GitHub para envio no formulário de prova no Classroom
+1. Confira se o `Avaliacao2.md` e todos os prints da pasta `prints/` foram enviados (commit) para o seu repositório.
+2. Abra o arquivo `Avaliacao2.md` no GitHub e copie o **link direto** dele.
+3. Envie esse link no formulário indicado pelo professor (Google Classroom / Google Forms) dentro do prazo.
 
 ---
 
 ## 📁 Estrutura Esperada do Repositório do Aluno
 
-O seu repositório de entrega de avaliação deve ficar organizado da seguinte forma:
-
 ```text
-lsor-avaliacao1/
-├── README.md               # Este arquivo de instruções gerais
-├── Avaliacao1.md           # Seu caderno de respostas (antigo template-prova-1-v2.md preenchido)
-└── prints/                 # Pasta contendo todos os prints de evidência técnica
-    ├── q1_importacao.png
-    ├── q2_usuarios.png
-    ├── q3_grupos.png
-    └── ... (demais capturas de tela exigidas)
+lsor-2026.2-sysdev-<nomedoaluno>-avaliacao2/
+├── README.md               # Este arquivo de instruções
+├── Avaliacao2.md           # Seu caderno de respostas (preenchido)
+└── prints/                 # Capturas de tela das evidências
+    ├── q1_vm_importada.png
+    ├── q2_ip_addr.png
+    ├── q3_netstat_listening.png
+    ├── q4_usuarios.png
+    └── ... (demais capturas exigidas)
 ```
 
 ---
-
 
 _Boa prova!_  
 **Prof. Alaelson Jatobá**  
