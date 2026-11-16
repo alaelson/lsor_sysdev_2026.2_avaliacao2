@@ -77,8 +77,13 @@ Você é o responsável pela infraestrutura do **Hackathon IFAL**. O servidor do
 
 ### 💻 QUESTÃO 1: Importação da VM no VirtualBox
 
-1.  Copie `UbuntuAvaliacao2.ova` de `\\172.20.20.21\public\avaliacao2` (usuário/senha `alunoifal`) para `C:\2026.2\SysDevTech\VM\<NomeDoAluno>`.
-2.  No VirtualBox, use **Arquivo → Importar Appliance**. Na tela de configurações da importação:
+1.  Copie `UbuntuAvaliacao2.ova` do servidor pelo **PowerShell** (veja o Passo 2 do README):
+    ```powershell
+    net use \\172.20.20.21\public /user:alunoifal alunoifal
+    robocopy \\172.20.20.21\public\avaliacao2 C:\2026.2\SysDevTech\VM\original UbuntuAvaliacao2.ova /Z /J /R:3 /W:5
+    ```
+    Se a rede cair, execute o mesmo `robocopy` de novo: ele continua de onde parou.
+2.  No VirtualBox, use **Arquivo → Importar Appliance** e selecione `C:\2026.2\SysDevTech\VM\original\UbuntuAvaliacao2.ova`. Na tela de configurações da importação:
     *   altere o **Nome** da VM para **`avaliacao2-<seunome>`** (ex.: `avaliacao2-joaosilva`);
     *   altere a **Pasta Base da Máquina** para `C:\2026.2\SysDevTech\VM\<NomeDoAluno>`.
 3.  Antes de ligar, abra **Configurações** da VM e confira: **768 MB** de memória, **1 CPU** e **Adaptador 1 em NAT**.

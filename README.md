@@ -18,11 +18,18 @@ A prova é **individual** e **prática**: você vai trabalhar em uma máquina vi
 4. Depois de criar, vá em **Settings** → **Collaborators** → **Add people** e adicione o professor (`alaelson`) como colaborador. **Sem esse passo o professor não consegue corrigir a sua prova.**
 
 ### Passo 2: Obter e Configurar a Máquina Virtual
-1. No laboratório, acesse o servidor de arquivos:
+1. A VM está no servidor de arquivos do laboratório:
    * Caminho de rede: `\\172.20.20.21\public\avaliacao2`
    * Usuário: `alunoifal` | Senha: `alunoifal`
-2. Copie o arquivo **`UbuntuAvaliacao2.ova`** para a sua pasta de trabalho: `C:\2026.2\SysDevTech\VM\<NomeDoAluno>`.
-3. Importe a VM no VirtualBox (detalhes na Questão 1).
+2. Copie o arquivo **`UbuntuAvaliacao2.ova`** (cerca de 5 GB) abrindo o **PowerShell** e executando os dois comandos abaixo:
+   ```powershell
+   net use \\172.20.20.21\public /user:alunoifal alunoifal
+   robocopy \\172.20.20.21\public\avaliacao2 C:\2026.2\SysDevTech\VM\original UbuntuAvaliacao2.ova /Z /J /R:3 /W:5
+   ```
+   * O primeiro comando conecta ao servidor; o segundo copia o arquivo para `C:\2026.2\SysDevTech\VM\original`.
+   * Use o **caminho de rede** (`\\172.20.20.21\...`) como acima, e não uma unidade mapeada (`Z:`): a unidade mapeada pode não aparecer na janela do PowerShell e o `robocopy` mostra `ERROR 3`.
+   * A cópia pode demorar alguns minutos, porque a turma toda copia ao mesmo tempo. **Se a rede cair, execute o mesmo `robocopy` de novo**: ele continua de onde parou.
+3. Importe a VM no VirtualBox, salvando-a na sua pasta `C:\2026.2\SysDevTech\VM\<NomeDoAluno>` (detalhes na Questão 1).
 4. Credenciais da VM: Usuário: `administrador` | Senha: `adminifal`.
 
 ### Passo 3: Responder a Avaliação
